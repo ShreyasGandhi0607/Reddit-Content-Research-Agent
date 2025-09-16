@@ -5,3 +5,5 @@ pre-commit
 langchain
 langchain-brightdata
 langchain-community
+langchain[openai]
+langchain[google-genai]
