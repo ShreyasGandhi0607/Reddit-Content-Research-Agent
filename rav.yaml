@@ -1,3 +1,14 @@
 scripts:
   notebook: jupyter notebook
   install: pip3 install -r requirements.txt
+  migrate:
+    - cd src
+    - ../venv/bin/python3 manage.py migrate
+  clean:
+    - venv/bin/pre-commit run --all-files
+  docker_up:
+    - docker compose up -d
+  docker_down:
+    - docker compose down
+  docker_down_delete:
+    - docker compose down -v
