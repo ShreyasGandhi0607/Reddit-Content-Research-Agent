@@ -30,9 +30,14 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 DEBUG = str(os.getenv("DJANGO_DEBUG")) == "1"
 
 ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = []
+
+ALLOWED_HOST=os.getenv("ALLOWED_HOST")
+CSRF_TRUSTED_ORIGIN=os.getenv("CSRF_TRUSTED_ORIGINS")
 
 if DEBUG:
-    ALLOWED_HOSTS.append("*")
+    ALLOWED_HOSTS.append(ALLOWED_HOST)
+    CSRF_TRUSTED_ORIGINS.append(CSRF_TRUSTED_ORIGIN)
 
 # Application definition
 
@@ -46,6 +51,9 @@ INSTALLED_APPS = [
     # third party
     'django_celery_beat',
     'django_celery_results',
+    "django_qstash",
+    "django_qstash.results",
+    "django_qstash.schedules",
     # internal
     'blog',
 
@@ -170,3 +178,13 @@ CELERY_BROKER_URL = REDIS_URL
 
 # this allows you to schedule items in the Django admin.
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
+
+
+####### DJANGO QSTASH CONFIG ##########
+
+QSTASH_URL=os.getenv("QSTASH_URL")
+QSTASH_TOKEN=os.getenv("QSTASH_TOKEN")
+QSTASH_CURRENT_SIGNING_KEY=os.getenv("QSTASH_CURRENT_SIGNING_KEY")
+QSTASH_NEXT_SIGNING_KEY=os.getenv("QSTASH_NEXT_SIGNING_KEY")
+DJANGO_QSTASH_DOMAIN=os.getenv("DJANGO_QSTASH_DOMAIN")
+DJANGO_QSTASH_WEBHOOK_PATH=os.getenv("DJANGO_QSTASH_WEBHOOK_PATH") or "/qstash/webhook/"
