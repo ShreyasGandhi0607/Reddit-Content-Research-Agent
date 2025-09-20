@@ -1,9 +1,15 @@
 scripts:
   notebook: jupyter notebook
   install: pip3 install -r requirements.txt
+  makemigrations:
+    - cd src
+    - ../venv/bin/python3 manage.py makemigrations
   migrate:
     - cd src
     - ../venv/bin/python3 manage.py migrate
+  worker:
+    - cd src
+    - ../venv/bin/celery -A ResearchAgent worker --beat -l info 
   clean:
     - venv/bin/pre-commit run --all-files
   docker_up:
@@ -12,3 +18,8 @@ scripts:
     - docker compose down
   docker_down_delete:
     - docker compose down -v
+  docker_status:
+    - docker compose ps
+  shell:
+    - cd src
+    - ../venv/bin/python3 manage.py shell
