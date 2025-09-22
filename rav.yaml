@@ -23,3 +23,9 @@ scripts:
   shell:
     - cd src
     - ../venv/bin/python3 manage.py shell
+  check_venv:
+    - which python3
+    - unalias python3 || true
+    - unalias pip3 || true
+    - . venv/bin/activate
+    - which python3
