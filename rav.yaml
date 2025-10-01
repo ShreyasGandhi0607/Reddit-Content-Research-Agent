@@ -29,3 +29,6 @@ scripts:
     - unalias pip3 || true
     - . venv/bin/activate
     - which python3
+  run_server:
+    - cd src
+    - ../venv/bin/python3 manage.py runserver
